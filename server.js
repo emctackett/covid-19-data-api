@@ -62,6 +62,20 @@ app.get('/country/:country_name', (req, res) => {
     });
 });
 
+app.get('/country', (req, res) => {
+  const url = 'https://services.arcgis.com/5T5nSi527N4F7luB/arcgis/' +
+            'rest/services/Cases_by_country_Plg_V3/FeatureServer/0/query';
+  const params = 'f=json&where=1=1&returnGeometry=False' +
+                 '&spatialRel=esriSpatialRelIntersects' +
+                 '&outFields=*&orderByFields=cum_conf desc&cacheHint=true';
+
+  fetch(`${url}?${params}`)
+  .catch(err => res.send(err))
+  .then(res => res.json())
+  .catch(err => res.send(err))
+  .then(data => res.send(data.features));
+});
+
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
