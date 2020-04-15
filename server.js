@@ -2,7 +2,6 @@ const express = require('express');
 const fetch = require('node-fetch');
 const app = express();
 const port = process.env.PORT || 4000;
-const queryString = require('query-string');
 
 app.all('*', (req, res, next) => {
   res.set("Access-Control-Allow-Origin", "*");
