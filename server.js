@@ -10,6 +10,7 @@ app.all('*', (req, res, next) => {
 
 app.get('/state/:state_name', (req, res) => {
   const cdcDataDump = 'http://www.cdc.gov/coronavirus/2019-ncov/map-cases-us.json';
+  const state = req.params.state_name.toLowerCase();
 
   fetch(cdcDataDump)
     .then(res => res.json())
@@ -21,7 +22,7 @@ app.get('/state/:state_name', (req, res) => {
         const jurisdiction = stateData['Jurisdiction'];
 
         if (jurisdiction &&
-            jurisdiction.toLowerCase() === req.params.state_name) {
+            jurisdiction.toLowerCase() === state) {
           res.send(stateData);
         }
       })
