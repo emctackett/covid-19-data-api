@@ -6,6 +6,8 @@ A simple node server built with express.
 
 ## Usage
 
+Query the API via http://covid-19-data-api.herokuapp.com, using one of the following paths:
+
 ### `/state`
 
 Returns an array of objects with state-specific data:
