@@ -1,0 +1,19 @@
+{
+  "name": "covid-cdc-api",
+  "version": "1.0.0",
+  "description": "Returns information from the CDC regarding the COVID-19 pandemic.",
+  "main": "server.js",
+  "scripts": {
+    "test": "npm test",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "covid",
+    "cdc"
+  ],
+  "author": "Elizabeth Tackett",
+  "license": "MIT",
+  "dependencies": {
+    "express": "4.17.1"
+  }
+}
