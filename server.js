@@ -9,14 +9,13 @@ app.all('*', (req, res, next) => {
 });
 
 app.get('/state/:state_name', (req, res) => {
-  const cdcDataDump = 'http://www.cdc.gov/coronavirus/2019-ncov/map-cases-us.json';
+  const cdcDataDump = 'http://www.cdc.gov/coronavirus/2019-ncov' +
+                      '/map-cases-us.json';
   const state = req.params.state_name.toLowerCase();
 
   fetch(cdcDataDump)
     .then(res => res.json())
-    .catch(err => {
-      res.send(err);
-    })
+    .catch(err => res.send(err))
     .then(data => {
       data.data.forEach(stateData => {
         const jurisdiction = stateData['Jurisdiction'];
@@ -27,6 +26,16 @@ app.get('/state/:state_name', (req, res) => {
         }
       })
     });
+});
+
+app.get('/state', (req, res) => {
+  const cdcDataDump = 'http://www.cdc.gov/coronavirus/2019-ncov' +
+                      '/map-cases-us.json';
+
+  fetch(cdcDataDump)
+    .then(res => res.json())
+    .catch(err => res.send(err))
+    .then(data => res.send(data.data));
 });
 
 app.get('/country/:country_name', (req, res) => {
